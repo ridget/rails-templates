@@ -19,6 +19,7 @@ gem_group :development, :test do
   gem 'zeus', '~> 0.13.4.pre', :require => false
 end
 
+# This can be inside anywhere eg 'vendor'
 inside app_name do
   run 'bundla install'
 end
@@ -85,3 +86,13 @@ generate 'devise:views' if yes?("Generate Devise Views?")
 
 # Cancan
 generate 'cancan:ability'
+
+git :init
+git add: '.'
+git commit: "-a -m 'Initial commit'"
+
+# Other cool things you can do:
+# rake # eg rake "db:migrate"
+# route # eg "root to: users#index"
+# check out http://guides.rubyonrails.org/rails_application_templates.html
+# and https://github.com/erikhuda/thor
