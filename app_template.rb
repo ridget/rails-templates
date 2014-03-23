@@ -81,6 +81,7 @@ remove_file 'app/assets/stylesheets/application.css'
 
 # Devise
 generate 'devise:install'
+generate 'devise:views' if yes?("Generate Devise Views?")
 
 # Cancan
 generate 'cancan:ability'
