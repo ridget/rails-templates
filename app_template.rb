@@ -1,9 +1,10 @@
+# GEMS
+
 gem 'devise'
 gem 'cancan'
 gem 'haml-rails'
 gem 'mysql2'
 gem 'capistrano', '~> 2.0'
-
 
 gem_group :assets do
   gem 'bootstrap-sass'
@@ -21,3 +22,15 @@ end
 inside app_name do
   run 'bundle install'
 end
+
+# Delete all unnecessary files
+# and create some new ones
+remove_file "README"
+remove_file "public/index.html"
+remove_file "public/robots.txt"
+remove_file "public/images/rails.png"
+
+create_file 'README.md'
+create_file 'log/.gitkeep'
+create_file 'tmp/.gitkeep'
+
