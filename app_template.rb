@@ -34,3 +34,20 @@ create_file 'README.md'
 create_file 'log/.gitkeep'
 create_file 'tmp/.gitkeep'
 
+# Start .gitignore
+append_file '.gitignore', <<-EOF
+  .ackrc
+  .rvmrc
+  config/database.yml
+  public/cache/
+  public/stylesheets/compiled/
+  public/system/*
+  tmp/restart.txt
+  .idea
+  /.bundle
+  .powrc
+  # Ignore all logfiles and tempfiles.
+  /log/*.log
+  /tmp
+EOF
+# End .gitignore
