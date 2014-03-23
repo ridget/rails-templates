@@ -21,7 +21,7 @@ end
 
 # This can be inside anywhere eg 'vendor'
 inside app_name do
-  run 'bundla install'
+  run 'bundle install'
 end
 
 # Delete all unnecessary files
@@ -45,7 +45,7 @@ public/stylesheets/compiled/
 public/system/*
 tmp/restart.txt
 .idea
-/.bundla
+/.bundle
 .powrc
 # Ignore all logfiles and tempfiles.
 /log/*.log
