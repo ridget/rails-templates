@@ -20,7 +20,7 @@ gem_group :development, :test do
 end
 
 inside app_name do
-  run 'bundle install'
+  run 'bundla install'
 end
 
 # Delete all unnecessary files
@@ -44,10 +44,36 @@ append_file '.gitignore', <<-EOF
   public/system/*
   tmp/restart.txt
   .idea
-  /.bundle
+  /.bundla
   .powrc
   # Ignore all logfiles and tempfiles.
   /log/*.log
   /tmp
 EOF
 # End .gitignore
+
+# Gem configs and generators
+#
+# Rspec specific stuff
+generate 'rspec:install'
+run 'mkdir spec/support'
+
+inject_into_file 'spec/spec_helper.rb', "\n\s\sconfig.include Capybara::DSL\n", after: "RSpec.configure do |config|\n"
+inject_into_file 'spec/spec_helper.rb', "\n\s\sconfig.include FactoryGirl::Syntax::Methods\n", after: "RSpec.configure do |config|\n"
+inject_into_file 'spec/spec_helper.rb', "\n\s\sconfig.include Devise::TestHelpers, :type => :controllers\n", after: "RSpec.configure do |config|\n"
+
+# Bootstrap sass requirements
+copy_file 'app/assets/stylesheets/application.css', 'app/assets/stylesheets/application.css.scss'
+
+append_file 'app/assets/stylesheets/application.css.scss' , <<-EOF
+ @import "bootstrap";
+ @import "bootstrap/theme";
+EOF
+
+remove_file 'app/assets/stylesheets/application.css'
+
+# Devise
+generate 'devise:install'
+
+# Cancan
+generate 'cancan:ability'
