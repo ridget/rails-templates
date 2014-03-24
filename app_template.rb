@@ -91,6 +91,17 @@ git :init
 git add: '.'
 git commit: "-a -m 'Initial commit'"
 
+capify!
+
+cap_envs = ask('What did you want your cap stages to be called (defaults to staging and production), please provide a list separated by commas')
+cap_envs ||= "staging,production"
+unless cap_envs.empty?
+  run 'mkdir config/deploy'
+  cap_envs.split(",").map{|s| s.strip}.each do |env|
+    create_file "config/deploy/#{env}.rb"
+  end
+end
+
 # Other cool things you can do:
 # rake # eg rake "db:migrate"
 # route # eg "root to: users#index"
